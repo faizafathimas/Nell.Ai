@@ -1,0 +1,25 @@
+graph TD
+    subgraph "User Interface"
+        A[Frontend<br/>React Application]
+    end
+
+    subgraph "API Layer"
+        B[Backend API<br/>Express.js Server]
+    end
+
+    subgraph "AI Processing"
+        C[Local LLM Service<br/>FastAPI + Fine-tuned FLAN-T5]
+        D[External AI Service<br/>OpenRouter API]
+    end
+
+    subgraph "Data Layer"
+        E[MongoDB Database<br/>Chat History & Sessions]
+    end
+
+    A -->|HTTP Request| B
+    B -->|Query Processing| C
+    B -->|Fallback/Enhancement| D
+    B -->|Store/Retrieve Data| E
+    C -->|Response| B
+    D -->|Response| B
+    B -->|AI Response| A
